@@ -5,8 +5,11 @@ import { Button } from "primereact/button";
 export default function RandomChoice() {
   const [choiceCount, setChoiceCount] = useState(1);
   const [choices, setChoices] = useState([" "]);
+  const [selectedChoice, setSelectedChoice] = useState(null);
 
   const handleChoiceCountChange = ({ add = true }) => {
+    setSelectedChoice(null);
+
     if (add) return setChoiceCount((prev) => prev + 1);
 
     if (choiceCount <= 1) return setChoiceCount(1);
@@ -15,6 +18,11 @@ export default function RandomChoice() {
     const choiceArray = [...choices];
     choiceArray.pop();
     setChoices(choiceArray);
+  };
+
+  const handleChoiceSelect = () => {
+    const selectedIndex = Math.floor(Math.random() * choiceCount);
+    setSelectedChoice(choices[selectedIndex]);
   };
 
   return (
@@ -40,6 +48,8 @@ export default function RandomChoice() {
           <InputText
             key={index}
             onChange={(e) => {
+              setSelectedChoice(null);
+
               const newChoice = e.target.value;
               const choiceArray = [...choices];
               choiceArray[index] = newChoice;
@@ -48,6 +58,9 @@ export default function RandomChoice() {
           />
         );
       })}
+
+      <Button label="Roll" onClick={() => handleChoiceSelect()} />
+      {selectedChoice && <>Winner: {selectedChoice}</>}
     </>
   );
 }
