@@ -1,0 +1,25 @@
+.random-choices div {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0.5rem;
+}
+
+.random-choices-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.random-choices-buttons > button {
+  margin: 0 0.25rem;
+}
+
+.random-choices-choices-list {
+    justify-content: space-around;
+}
+
+.random-choices-choices-inputs {
+    justify-content: space-evenly;
+}
+
+.random-choices-result {
+}
