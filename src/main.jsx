@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
 import RandomChoice from "./components/RandomChoice.jsx";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/themes/md-light-deeppurple/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 const router = createBrowserRouter([
