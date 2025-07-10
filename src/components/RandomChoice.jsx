@@ -16,15 +16,11 @@ export default function RandomChoice() {
       return setChoices(choiceArray);
     }
 
-    if (choices.length <= 1) return
+    if (choices.length <= 1) return;
 
     let choiceArray = [...choices];
-
-    if (index) {
-      choiceArray.splice(index, 1);
-    } else {
-      choiceArray.pop();
-    }
+    if (index) choiceArray.splice(index, 1);
+    else choiceArray.pop();
 
     setChoices(choiceArray);
   };
