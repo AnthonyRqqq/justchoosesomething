@@ -14,15 +14,16 @@
 }
 
 .random-choices-choices-list {
-    justify-content: space-around;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .random-choices-choices-inputs {
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
 
-.random-choices-choices-inputs  input {
+.random-choices-choices-inputs input {
   margin: 0.5rem 0.5rem;
 }
 

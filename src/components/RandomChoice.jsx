@@ -27,17 +27,19 @@ export default function RandomChoice() {
   };
 
   const handleChoiceSelect = () => {
-    const selectedIndex = Math.floor(Math.random() * choiceCount);
-    setSelectedChoice(choices[selectedIndex]);
+    const validChoices = choices.filter((choice) => choice.trim());
+    if (!validChoices.length) return;
+    const selectedIndex = Math.floor(Math.random() * validChoices.length);
+    setSelectedChoice(validChoices[selectedIndex]);
   };
 
   return (
     <div className="random-choices">
       <div className="random-choices-choices-list">
         Choices:{" "}
-        {choices.map((choice, index) => (
-          <div key={index}>{choice}</div>
-        ))}
+        {choices.map(
+          (choice, index) => choice && <div key={index}>{choice}</div>
+        )}
       </div>
 
       <div className="random-choices-buttons">
