@@ -19,6 +19,11 @@
 
 .random-choices-choices-inputs {
     justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+.random-choices-choices-inputs  input {
+  margin: 0.5rem 0.5rem;
 }
 
 .random-choices-result {

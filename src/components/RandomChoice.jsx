@@ -12,7 +12,6 @@ export default function RandomChoice() {
     setSelectedChoice(null);
 
     if (add) {
-      if (!choices[choiceCount - 1]?.trim()) return;
       const choiceArray = [...choices];
       choiceArray.push("");
       setChoices(choiceArray);
