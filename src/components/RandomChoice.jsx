@@ -79,7 +79,7 @@ export default function RandomChoice() {
 
       <div className="random-choices-result">
         <Button label="Roll" onClick={() => handleChoiceSelect()} />
-        {selectedChoice && <>Winner: {selectedChoice}</>}
+        {selectedChoice && <div>Winner: {selectedChoice}</div>}
       </div>
     </div>
   );
