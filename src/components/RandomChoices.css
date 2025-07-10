@@ -20,7 +20,20 @@
 
 .random-choices-choices-inputs {
   justify-content: space-evenly;
+  /* align-items: center; */
   flex-wrap: wrap;
+}
+
+.random-choices-choices-inputs div {
+  align-items: center;
+}
+
+.random-choices-choices-inputs i {
+  margin-left: 1rem;
+}
+
+.random-choices-choices-inputs i:hover {
+  cursor: pointer;
 }
 
 .random-choices-choices-inputs input {

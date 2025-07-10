@@ -1,28 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "./RandomChoices.css";
 
 export default function RandomChoice() {
-  const [choiceCount, setChoiceCount] = useState(1);
   const [choices, setChoices] = useState([" "]);
   const [selectedChoice, setSelectedChoice] = useState(null);
 
-  const handleChoiceCountChange = ({ add = true }) => {
+  const handleChoiceCountChange = ({ add = true, index }) => {
     setSelectedChoice(null);
 
     if (add) {
       const choiceArray = [...choices];
       choiceArray.push("");
-      setChoices(choiceArray);
-      return setChoiceCount((prev) => prev + 1);
+      return setChoices(choiceArray);
     }
 
-    if (choiceCount <= 1) return setChoiceCount(1);
+    if (choices.length <= 1) return
 
-    setChoiceCount((prev) => prev - 1);
-    const choiceArray = [...choices];
-    choiceArray.pop();
+    let choiceArray = [...choices];
+
+    if (index) {
+      choiceArray.splice(index, 1);
+    } else {
+      choiceArray.pop();
+    }
+
     setChoices(choiceArray);
   };
 
@@ -54,19 +57,26 @@ export default function RandomChoice() {
       </div>
 
       <div className="random-choices-choices-inputs">
-        {Array.from({ length: choiceCount }).map((_, index) => {
+        {choices.map((choice, index) => {
           return (
-            <InputText
-              key={index}
-              onChange={(e) => {
-                setSelectedChoice(null);
+            <div>
+              <i
+                className="pi pi-trash"
+                onClick={() => handleChoiceCountChange({ add: false, index })}
+              />
+              <InputText
+                key={index}
+                onChange={(e) => {
+                  setSelectedChoice(null);
 
-                const newChoice = e.target.value;
-                const choiceArray = [...choices];
-                choiceArray[index] = newChoice;
-                setChoices(choiceArray);
-              }}
-            />
+                  const newChoice = e.target.value;
+                  const choiceArray = [...choices];
+                  choiceArray[index] = newChoice;
+                  setChoices(choiceArray);
+                }}
+                value={choice}
+              />
+            </div>
           );
         })}
       </div>
