@@ -1,7 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
 import RandomChoice from "./components/RandomChoice.jsx";
 
@@ -13,6 +17,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="/randomchoice" replace />,
+      },
       {
         path: "/randomchoice",
         element: <RandomChoice />,
