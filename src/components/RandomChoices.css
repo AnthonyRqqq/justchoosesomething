@@ -16,8 +16,13 @@
 }
 
 .random-choices-choices-list {
-  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.random-choices-choices-list span {
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
 }
 
 .random-choices-choices-inputs {
