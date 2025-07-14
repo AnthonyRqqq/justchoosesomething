@@ -42,6 +42,25 @@ export default function RandomChoice() {
     setChoices(choiceArray);
   };
 
+  /**
+   * Initiates a randomized "roll" animation to select one of the valid choices.
+   *
+   * Behavior:
+   * - Filters out empty or whitespace-only choices.
+   * - If no valid choices exist, sets a placeholder message: "[No choices...Awkward]".
+   * - If only one valid choice exists, it is selected immediately.
+   * - If multiple valid choices exist:
+   *    - Randomly cycles through them (`maxCycles` times) to simulate a rolling effect.
+   *    - Uses a timed interval to update the selection every 100ms.
+   *    - Ensures no two consecutive choices are the same for visual variety.
+   *    - After rolling, the final choice is set to a randomly selected one.
+   *    - Progress percentage is updated during the animation for UI feedback.
+   *
+   * Side Effects:
+   * - Updates `selectedChoice` with each intermediate and final result.
+   * - Updates `progress` (for a progress bar) and `rolling` (for disabling UI during roll).
+   * - Uses `setInterval` and `clearInterval` for animation timing.
+   */
   const handleChoiceSelect = () => {
     const validChoices = choices.filter((choice) => choice.trim());
     if (!validChoices.length) {
@@ -68,6 +87,7 @@ export default function RandomChoice() {
 
         count++;
         setProgress((count / maxCycles) * 100);
+        
         if (count >= maxCycles) {
           setRolling(false);
           setProgress(0);
