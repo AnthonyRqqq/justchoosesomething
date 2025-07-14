@@ -1,12 +1,25 @@
-# React + Vite
+# Just Choose Something
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Description](#description)
 
-## Expanding the ESLint configuration
+[License](#license)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[Questions](#questions)
+
+## Description
+
+Just Choose Something aims to allows people the freedom from decision paralysis! In our current version, we support a randomized choice picker that will select one option from a variety that it is given (or reinforce your choice if you only gave it one option). In the future, we plan to add multiple types of polling and the ability to select randomly from categories of past options.
+
+A link to the website can be found [here](https://justchoosesomething.com).
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+## Questions
+
+GitHub: [AnthonyRqqq](https://github.com/AnthonyRqqq)
