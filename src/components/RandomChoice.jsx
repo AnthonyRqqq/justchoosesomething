@@ -10,6 +10,20 @@ export default function RandomChoice() {
   const [rolling, setRolling] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  /**
+   * Modifies the list of choices by either adding a new blank entry or removing one.
+   *
+   * @param {Object} options - Configuration for how to modify the list.
+   * @param {boolean} [options.add=true] - If true, adds a new empty string to the list of choices.
+   * @param {number} [options.index] - If provided (and `add` is false), removes the choice at this index.
+   *                                    Otherwise, removes the last choice.
+   *
+   * - If `add` is true: adds a new blank choice to the end.
+   * - If `add` is false and `index` is provided: removes the choice at that index.
+   * - If `add` is false and `index` is not provided: removes the last item, unless only one item remains.
+   *
+   * Resets any selected result by clearing `selectedChoice`.
+   */
   const handleChoiceCountChange = ({ add = true, index }) => {
     setSelectedChoice(null);
 
@@ -22,7 +36,7 @@ export default function RandomChoice() {
     if (choices.length <= 1) return;
 
     let choiceArray = [...choices];
-    if (index) choiceArray.splice(index, 1);
+    if (index !== undefined) choiceArray.splice(index, 1);
     else choiceArray.pop();
 
     setChoices(choiceArray);
