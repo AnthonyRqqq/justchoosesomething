@@ -27,7 +27,8 @@ export default function RandomChoice() {
 
   const handleChoiceSelect = () => {
     const validChoices = choices.filter((choice) => choice.trim());
-    if (!validChoices.length) return;
+    if (!validChoices.length)
+      return setSelectedChoice("[No choices...Awkward]");
     const selectedIndex = Math.floor(Math.random() * validChoices.length);
     setSelectedChoice(validChoices[selectedIndex]);
   };
