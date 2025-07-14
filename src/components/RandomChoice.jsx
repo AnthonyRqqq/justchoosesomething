@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { ProgressBar } from "primereact/progressbar";
 import "./RandomChoices.css";
 
 export default function RandomChoice() {
   const [choices, setChoices] = useState([" "]);
   const [selectedChoice, setSelectedChoice] = useState(null);
-  const [currentInterval, setCurrentInterval] = useState(3);
+  const [rolling, setRolling] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleChoiceCountChange = ({ add = true, index }) => {
     setSelectedChoice(null);
@@ -26,6 +28,10 @@ export default function RandomChoice() {
     setChoices(choiceArray);
   };
 
+  useEffect(() => {
+    console.log(progress);
+  }, [progress]);
+
   const handleChoiceSelect = () => {
     const validChoices = choices.filter((choice) => choice.trim());
     if (!validChoices.length) {
@@ -39,6 +45,7 @@ export default function RandomChoice() {
       const maxCycles = 20;
       let previousIndex;
 
+      setRolling(true);
       const interval = setInterval(() => {
         let randomIndex = Math.floor(Math.random() * validChoices.length);
         if (previousIndex === randomIndex) {
@@ -47,11 +54,14 @@ export default function RandomChoice() {
         }
 
         previousIndex = randomIndex;
-        console.log(randomIndex);
+        // console.log(randomIndex);
         setSelectedChoice(validChoices[randomIndex]);
 
         count++;
+        setProgress((count / maxCycles) * 100);
         if (count >= maxCycles) {
+          setRolling(false);
+          setProgress(0);
           setSelectedChoice(validChoices[selectedIndex]);
           clearInterval(interval);
         }
@@ -105,8 +115,17 @@ export default function RandomChoice() {
       </div>
 
       <div className="random-choices-result">
-        <Button label="Roll" onClick={() => handleChoiceSelect()} />
-        {selectedChoice && <div>Winner: {selectedChoice}</div>}
+        <div>
+          <Button label="Roll" onClick={() => handleChoiceSelect()} />
+        </div>
+        {rolling && (
+          <div className="random-choices-calculating">
+            <ProgressBar mode="indeterminate" value={progress}></ProgressBar>
+            <div>Calculating...</div>
+            <div>{selectedChoice}</div>
+          </div>
+        )}
+        {selectedChoice && !rolling && <div>Winner: {selectedChoice}</div>}
       </div>
     </div>
   );

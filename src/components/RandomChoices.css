@@ -41,6 +41,8 @@
   margin: 0.5rem 0.5rem;
 }
 
-.random-choices-result {
-
+.random-choices-result,
+.random-choices-calculating {
+  flex-direction: column;
 }
+
