@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { ProgressBar } from "primereact/progressbar";
@@ -28,10 +28,6 @@ export default function RandomChoice() {
     setChoices(choiceArray);
   };
 
-  useEffect(() => {
-    console.log(progress);
-  }, [progress]);
-
   const handleChoiceSelect = () => {
     const validChoices = choices.filter((choice) => choice.trim());
     if (!validChoices.length) {
@@ -54,7 +50,6 @@ export default function RandomChoice() {
         }
 
         previousIndex = randomIndex;
-        // console.log(randomIndex);
         setSelectedChoice(validChoices[randomIndex]);
 
         count++;
@@ -81,11 +76,17 @@ export default function RandomChoice() {
       <div className="random-choices-buttons">
         <Button
           icon="pi pi-plus"
-          onClick={() => handleChoiceCountChange({ add: true })}
+          onClick={(e) => {
+            e.target.blur();
+            handleChoiceCountChange({ add: true });
+          }}
         />
         <Button
           icon="pi pi-minus"
-          onClick={() => handleChoiceCountChange({ add: false })}
+          onClick={(e) => {
+            e.target.blur();
+            handleChoiceCountChange({ add: false });
+          }}
         />
       </div>
 
@@ -116,7 +117,13 @@ export default function RandomChoice() {
 
       <div className="random-choices-result">
         <div>
-          <Button label="Roll" onClick={() => handleChoiceSelect()} />
+          <Button
+            label="Roll"
+            onClick={(e) => {
+              e.target.blur();
+              handleChoiceSelect();
+            }}
+          />
         </div>
         {rolling && (
           <div className="random-choices-calculating">
