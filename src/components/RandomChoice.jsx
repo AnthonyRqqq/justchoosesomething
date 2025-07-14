@@ -87,7 +87,7 @@ export default function RandomChoice() {
 
         count++;
         setProgress((count / maxCycles) * 100);
-        
+
         if (count >= maxCycles) {
           setRolling(false);
           setProgress(0);
@@ -101,9 +101,19 @@ export default function RandomChoice() {
   return (
     <div className="random-choices">
       <div className="random-choices-choices-list">
-        Choices:{" "}
+        Choices:
         {choices.map(
-          (choice, index) => choice && <div key={index}>{choice}</div>
+          (choice, index) =>
+            choice && (
+              <span key={index}>
+                {choice}
+                {index < choices.length - 1 &&
+                  choices.some(
+                    (choice, choiceIndex) => choiceIndex > index && choice
+                  ) &&
+                  ", "}
+              </span>
+            )
         )}
       </div>
 
