@@ -6,6 +6,7 @@ import "./RandomChoices.css";
 export default function RandomChoice() {
   const [choices, setChoices] = useState([" "]);
   const [selectedChoice, setSelectedChoice] = useState(null);
+  const [currentInterval, setCurrentInterval] = useState(3);
 
   const handleChoiceCountChange = ({ add = true, index }) => {
     setSelectedChoice(null);
@@ -27,10 +28,35 @@ export default function RandomChoice() {
 
   const handleChoiceSelect = () => {
     const validChoices = choices.filter((choice) => choice.trim());
-    if (!validChoices.length)
+    if (!validChoices.length) {
       return setSelectedChoice("[No choices...Awkward]");
+    }
+
     const selectedIndex = Math.floor(Math.random() * validChoices.length);
-    setSelectedChoice(validChoices[selectedIndex]);
+
+    if (validChoices.length > 1) {
+      let count = 0;
+      const maxCycles = 20;
+      let previousIndex;
+
+      const interval = setInterval(() => {
+        let randomIndex = Math.floor(Math.random() * validChoices.length);
+        if (previousIndex === randomIndex) {
+          if (randomIndex === validChoices.length) randomIndex -= 1;
+          else randomIndex += 1;
+        }
+
+        previousIndex = randomIndex;
+        console.log(randomIndex);
+        setSelectedChoice(validChoices[randomIndex]);
+
+        count++;
+        if (count >= maxCycles) {
+          setSelectedChoice(validChoices[selectedIndex]);
+          clearInterval(interval);
+        }
+      }, 100);
+    } else setSelectedChoice(validChoices[selectedIndex]);
   };
 
   return (
