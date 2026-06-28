@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { registerSW } from "virtual:pwa-register";
 import App from "./App.jsx";
 import {
   createBrowserRouter,
@@ -12,6 +13,11 @@ import RandomChoice from "./components/RandomChoice.jsx";
 import "primereact/resources/themes/md-light-deeppurple/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+
+registerSW({
+  immediate: true,
+});
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,5 +40,5 @@ createRoot(document.getElementById("root")).render(
     <PrimeReactProvider>
       <RouterProvider router={router} />
     </PrimeReactProvider>
-  </StrictMode>
+  </StrictMode>,
 );
